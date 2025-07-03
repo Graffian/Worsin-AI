@@ -1,33 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import {useState} from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
+      <div className='flex justify-center items-center'>
         <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={viteLogo} className="logo items-center" alt="Vite logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <h1 className='text-3xl font-semibold mb-8'>Worsin AI</h1>
+      <div className="card flex flex-col justify-center items-center">
+        <input type="text" placeholder='Enter OpenAI secret key' className='w-fit text-[1.2rem] bg-[#333] rounded-full px-4 py mb-2'/>
+        <button className='text-[1.1rem] bg-[#555] rounded-full w-fit px-4 py cursor-pointer'>Enter</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
