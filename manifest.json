@@ -4,15 +4,15 @@
     "version" : "1.0.0",
     "description" : "Your fiendly neighborhood browser extension",
     "permissions" : [
-        "scripting" ,  "strorage" , "tabs" , "activeTab"
+        "scripting" ,  "storage" , "tabs" , "activeTab"
     ],
     "content_scripts" : [
         {
-            "js" : "src/content.tsx",
+            "js" : ["src/content.tsx"],
             "matches" : ["<all_urls>"]
         }
     ],
     "action" : {
-        "default-popup" : "index.html"
+        "default_popup" : "index.html"
     }
 }
