@@ -1,7 +1,7 @@
 const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
-
+const {ScrapePage} = require("./scraping")
 const app = express();
 
 app.use(cors());
@@ -29,7 +29,12 @@ app.post("/", async (req, res) => {
         res.status(500).json({ error: "Something went wrong" });
     }
 });
-
+app.post("/scrape" , async(req,res)=>{
+    const {link} = await req.body
+    if(!link)return res.json({error:"missing link"})
+    const data = await ScrapePage(link)
+    res.json({data})
+})
 app.listen(8000, () => {
     console.log("Server running at http://localhost:8000");
 });

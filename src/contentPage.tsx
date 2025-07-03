@@ -2,11 +2,26 @@ import React, { JSX, useState , useRef } from "react";
 import "./contentPage.css";
 
 export default function ContentPage():JSX.Element{
-    const [userMsg, setUserMsg] = useState<string>(null);
+    const [userMsg, setUserMsg] = useState<string>("");
     const [aiMsg, setAiMsg] = useState<string>("this is an ai message");
     const [open, setOpen] = useState(false);
     const userMsgRef = useRef <HTMLInputElement>(null)
+    function normalizeUrl(url: string): string {
+        if (!url || url === 'noUrl') return url;
+        url = url.trim().replace(/\s+/g, ''); // Remove spaces
 
+        // Fix common AI mistakes
+        if (url.startsWith('https//')) url = url.replace('https//', 'https://');
+        if (url.startsWith('http//')) url = url.replace('http//', 'http://');
+        if (url.startsWith('https:///')) url = url.replace('https:///', 'https://');
+        if (url.startsWith('http:///')) url = url.replace('http:///', 'http://');
+
+        // If it already starts with http or https, return as is
+        if (url.startsWith('http://') || url.startsWith('https://')) return url;
+
+        // Otherwise, prepend https://www.
+        return `https://www.${url.replace(/^www\./, '')}`;
+    }
     const handleSendButton = async () => {
         if (!userMsgRef.current) return
         const inputValue = userMsgRef.current?.value;
@@ -31,6 +46,19 @@ export default function ContentPage():JSX.Element{
                 body: JSON.stringify(userMessage)
             });
             const response = await data.json();
+            setAiMsg(response.message.content)
+            const normalizedUrl = normalizeUrl(response.message.content)
+            if (normalizedUrl && normalizedUrl!=="noUrl"){
+                const scrapeData = await fetch ("http://localhost:8000/scrape" , {
+                    method : "POST",
+                    headers:{
+                        "Content-Type" : "application/json"
+                    },
+                    body : JSON.stringify({link:normalizedUrl})
+                })
+                const scrapeRes = await scrapeData.json()
+                console.log(scrapeRes)
+            }
             console.log("AI RESPONSE", response.message.content);
         }
     };
