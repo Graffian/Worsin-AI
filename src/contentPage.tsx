@@ -141,14 +141,20 @@ export default function ContentPage(): JSX.Element {
         {open && (
             <div className={styles.chatboxOverlay}>
                 <header className={styles.header}>
-                    <button className={styles.headerButton}>Menu</button>
+                    <button className={styles.headerButton}>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#000000">
+                            <path d="M92-199v-105.33h776.67V-199H92Zm0-228.67v-104.66h776.67v104.66H92Zm0-228V-761h776.67v105.33H92Z"/>
+                        </svg>
+                    </button>
                     <p className={styles.headerTxt}>Worsin AI</p>
                     <button
                     className={`${styles.headerButton} ${styles.closeButton}`}
                     onClick={() => setOpen(false)}
                     aria-label="Close chatbox"
                     >
-                    ✕
+                    <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#000000">
+                        <path d="M251.33-178 178-251.33 406.67-480 178-708.67 251.33-782 480-553.33 708.67-782 782-708.67 553.33-480 782-251.33 708.67-178 480-406.67 251.33-178Z"/>
+                    </svg>
                     </button>
                 </header>
 
@@ -179,7 +185,9 @@ export default function ContentPage(): JSX.Element {
                 onClick={handleSendButton}
                 className={styles.sendButton}
                 >
-                Send
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
+                    <path d="M427.67-132v-495.33l-222 222L132-480l348-348.67L828.67-480l-74.34 74.67-222-222V-132H427.67Z"/>
+                </svg>
                 </button>
             </div>
             </div>
