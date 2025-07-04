@@ -142,7 +142,7 @@ export default function ContentPage(): JSX.Element {
             <div className={styles.chatboxOverlay}>
                 <header className={styles.header}>
                     <button className={styles.headerButton}>Menu</button>
-                    <p>Worsin AI</p>
+                    <p className={styles.headerTxt}>Worsin AI</p>
                     <button
                     className={`${styles.headerButton} ${styles.closeButton}`}
                     onClick={() => setOpen(false)}

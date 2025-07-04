@@ -58,4 +58,9 @@
   padding: 0.5rem 1rem; /* px-4 py */
   cursor: pointer;
   color: #fff;
+  transition: background-color 0.25s;
+}
+
+.button:hover{
+  background-color: #444;
 }

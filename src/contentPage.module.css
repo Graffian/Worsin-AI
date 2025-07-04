@@ -20,6 +20,7 @@
   border: 0;
   transition: background-color 0.2s ease;
   z-index: 2147483647;
+  transition: background-color 0.25s;
 }
 
 .floatingButton:hover {
@@ -67,6 +68,11 @@
   border-top-right-radius: 1rem ;
 }
 
+.headerTxt{
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
 .headerButton {
   background: linear-gradient(to right, #ec4899, #a855f7);
   color: white;
@@ -76,6 +82,7 @@
   border-radius: 9999px;
   border: none;
   min-width: 5rem;
+  transition: background 0.25s;
 }
 
 .headerButton:hover{
@@ -84,6 +91,7 @@
 
 .closeButton{
   background: linear-gradient(to right, #ef4444, #b91c1c);
+  transition: background 0.25s;
 }
 
 .closeButton:hover{
@@ -158,6 +166,8 @@
   cursor: pointer;
   border-radius: 9999px;
   border: none;
+  transition: background 0.25s;
+
 }
 
 .sendButton:hover{
