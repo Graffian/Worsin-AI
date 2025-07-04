@@ -1,0 +1,61 @@
+#root {
+  max-width: 1280px;
+  min-height: 300px;
+  margin: 0 auto;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  height: 4rem;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.title {
+  font-size: 1.875rem; /* text-3xl equivalent */
+  font-weight: 600; /* font-semibold equivalent */
+  margin-bottom: 2rem; /* mb-8 equivalent */
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: fit-content;
+  font-size: 1.2rem;
+  background-color: #333;
+  border: none;
+  border-radius: 9999px; /* rounded-full equivalent */
+  padding: 0.5rem 1rem; /* px-4 py */
+  margin-bottom: 0.5rem; /* mb-2 */
+  color: #fff; /* text visible on dark bg */
+}
+
+.button {
+  font-size: 1.1rem;
+  background-color: #555;
+  border: none;
+  border-radius: 9999px; /* rounded-full equivalent */
+  width: fit-content;
+  padding: 0.5rem 1rem; /* px-4 py */
+  cursor: pointer;
+  color: #fff;
+}

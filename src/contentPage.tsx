@@ -1,6 +1,6 @@
 import React, { JSX, useState, useRef } from "react";
 import nlp from "compromise";
-import "./contentPage.css";
+import styles from "./contentPage.module.css";
 
 export default function ContentPage(): JSX.Element {
     const [messages, setMessages] = useState<{ role: 'user' | 'ai', content: string }[]>([]);
@@ -128,62 +128,62 @@ export default function ContentPage(): JSX.Element {
 
     return (
         <>
-            {/* Floating toggle button */}
-            {!open && (
-                <button
-                    onClick={() => setOpen(true)}
-                    style={{ zIndex: 2147483647 }}
-                    className="fixed right-6 bottom-6 bg-blue-600 text-white rounded-full shadow-lg w-14 h-14 flex items-center justify-center text-2xl cursor-pointer hover:bg-blue-700 transition-all"
-                    aria-label="Open chatbox"
-                >
-                    💬
-                </button>
-            )}
+        {!open && (
+            <button
+            onClick={() => setOpen(true)}
+            className={styles.floatingButton}
+            aria-label="Open chatbox"
+            >
+            💬
+            </button>
+        )}
 
-            {/* Chatbox overlay */}
-            {open && (
+        {open && (
+            <div className={styles.chatboxOverlay}>
+                <header className={styles.header}>
+                    <button className={styles.headerButton}>Menu</button>
+                    <p>Worsin AI</p>
+                    <button
+                    className={`${styles.headerButton} ${styles.closeButton}`}
+                    onClick={() => setOpen(false)}
+                    aria-label="Close chatbox"
+                    >
+                    ✕
+                    </button>
+                </header>
+
+            <div className={styles.messageArea}>
+                {messages.map((msg, idx) => (
                 <div
-                    className="w-[360px] h-[420px] fixed right-6 bottom-6 bg-[#333333ee] backdrop-blur-[6px] text-white rounded-t-2xl flex flex-col shadow-2xl"
-                    style={{ zIndex: 2147483647 }}
+                    key={idx}
+                    className={`${styles.messageRow} ${msg.role === 'user' ? styles.messageUser : styles.messageAI}`}
                 >
-                    <header className="w-full h-[40px] bg-white text-black text-[1.1rem] font-semibold flex justify-between items-center px-4 rounded-t-2xl">
-                        <button className="bg-gray-700 text-white px-4 cursor-pointer rounded-full">Menu</button>
-                        <p>Worsin AI</p>
-                        <button
-                            className="bg-gray-700 text-white px-4 cursor-pointer rounded-full"
-                            onClick={() => setOpen(false)}
-                            aria-label="Close chatbox"
-                        >
-                            ✕
-                        </button>
-                    </header>
-
-                    {/* Message area always fills available space and scrolls if needed */}
-                    <div className="py-4 px-2 flex flex-col gap-2 flex-1 overflow-y-auto">
-                        {messages.map((msg, idx) => (
-                            <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                <div className={`px-4 py-2 rounded-full max-w-[70%] ${msg.role === 'user' ? 'bg-blue-300 text-black' : 'bg-gray-200 text-black'}`}>
-                                    {msg.content}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="w-full h-[40px] px-4 py-2 text-[1.1rem] bg-white text-black font-stretch-semi-bold flex justify-between items-center">
-                        <input
-                            ref={userMsgRef}
-                            type="text"
-                            className="border-2 border-[#333] outline-0 rounded-full px-6 text-[1rem]"
-                        />
-                        <button
-                            onClick={handleSendButton}
-                            className="bg-gray-700 text-white px-4 cursor-pointer rounded-full"
-                        >
-                            send
-                        </button>
+                    <div
+                    className={`${styles.messageBubble} ${
+                        msg.role === 'user' ? styles.userBubble : styles.aiBubble
+                    }`}
+                    >
+                    {msg.content}
                     </div>
                 </div>
-            )}
-        </>
-    );
+                ))}
+            </div>
+
+            <div className={styles.inputArea}>
+                <input
+                ref={userMsgRef}
+                type="text"
+                className={styles.inputField}
+                />
+                <button
+                onClick={handleSendButton}
+                className={styles.sendButton}
+                >
+                Send
+                </button>
+            </div>
+            </div>
+      )}
+    </>
+  );
 }
