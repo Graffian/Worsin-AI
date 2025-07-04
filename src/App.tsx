@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import wAILogo from '/final logo.svg'
 import styles from './App.module.css'
 
 function App() {
@@ -7,9 +7,7 @@ function App() {
   return (
     <>
       <div className={styles.container}>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className={styles.logo} alt="Vite logo" />
-        </a>
+          <img src={wAILogo} className={styles.logo} alt="Worsin.AI logo" />
       </div>
       <h1 className={styles.title}>Worsin AI</h1>
       <div className={styles.card}>
